@@ -8,20 +8,12 @@
 
 ## 🏗️ 1. Network Pivoting Architecture (THEORY)
 
+> [!TIP]
+> **Module Reference Poster:** The infographic below covers the core concepts of Network Pivoting, Routing Tools (Proxychains, Chisel), and Covert Tunneling (ICMP, DNS). Use this as your primary visual reference for this module.
+
+![Network Pivoting & Tunneling](../assests/Network%20Penetration%20Testing%20&%20Pivoting.png)
+
 Network pivoting is the act of routing traffic from an attacker's machine through a compromised host to access systems on a different, restricted network segment.
-
-```mermaid
-graph LR
-    A["Attacker Kali\n(Internet)"] -- C2 Channel --> B["Compromised Web Server\n(DMZ: 10.0.0.5 / 192.168.1.5)"]
-    B -- Port Forwarding --> C["Internal Database\n(LAN: 192.168.1.10)"]
-    B -- SMB/RDP --> D["Domain Controller\n(LAN: 192.168.1.100)"]
-    
-    style A fill:#c53030,color:#fff
-    style B fill:#d69e2e,color:#fff
-    style C fill:#2b6cb0,color:#fff
-    style D fill:#2d3748,color:#fff
-```
-
 ### The Concept of a "Jump Box"
 The compromised web server acts as a proxy or "jump box". When the attacker wants to scan the Internal Database (`192.168.1.10`), they do not send packets directly from Kali. Instead, they tunnel their Nmap scan through the compromised Web Server (`10.0.0.5`), making the traffic appear as if it originated from inside the DMZ.
 
